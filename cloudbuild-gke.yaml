@@ -5,10 +5,10 @@ steps:
 #  args: ['clone', 'https://source.developers.google.com/p/gcp-devops-338510/r/repo-5']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build','-t',  'gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}', '.']
+  args: ['build','-t',  'asia.gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push','gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}']
+  args: ['push','asia.gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}']
 
 # kubectl set image deployment/cicd-app-1 runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}
 - name: 'gcr.io/cloud-builders/kubectl'
@@ -16,12 +16,13 @@ steps:
   - 'set'
   - 'image'
   - 'deployment/cicd-app-1'
-  - 'runimage-sha256-1=gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}'
+  - 'runimage-sha256-1=asia.gcr.io/${_PROJECT_ID}/${_CINAME}:${_VERSION}'
   env : 
-  - 'CLOUDSDK_COMPUTE_ZONE=asia-southeast1-b'
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-south2-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cicd-cluster'
+  - 'CLOUDSDK_COMPUTE_REGION=asia-south2'
 
 substitutions:
-  _PROJECT_ID : gcp-devops-433010
+  _PROJECT_ID : gcpdevops-ocean-434308-j4
   _CINAME : gke-image
   _VERSION : v1.0
