@@ -25,7 +25,7 @@ steps:
 substitutions:
   _PROJECT_ID : gcpdevops-ocean-434308-j4
   _CINAME : image1
-  _VERSION : v4.0
+  _VERSION : latest
 
 options:
   logging : CLOUD_LOGGING_ONLY
